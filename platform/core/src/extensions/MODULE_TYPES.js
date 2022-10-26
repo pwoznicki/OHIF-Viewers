@@ -1,5 +1,6 @@
 export default {
   COMMANDS: 'commandsModule',
+  UI_CUSTOMIZATION: 'customizationModule',
   DATA_SOURCE: 'dataSourcesModule',
   PANEL: 'panelModule',
   SOP_CLASS_HANDLER: 'sopClassHandlerModule',

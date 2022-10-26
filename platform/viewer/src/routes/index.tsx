@@ -10,7 +10,6 @@ import NotFound from './NotFound';
 import buildModeRoutes from './buildModeRoutes';
 import PrivateRoute from './PrivateRoute';
 
-// TODO: Make these configurable
 // TODO: Include "routes" debug route if dev build
 const bakedInRoutes = [
   // WORK LIST
@@ -47,7 +46,19 @@ const createRoutes = ({
       hotkeysManager,
     }) || [];
 
-  const allRoutes = [...routes, ...bakedInRoutes];
+  const { uiCustomizationService } = servicesManager.services;
+
+  const customRoutes = uiCustomizationService.getGlobalCustomization(
+    'customRoutes'
+  );
+  const customBakedInRoutes =
+    customRoutes?.customizeBakedInRoutes?.(bakedInRoutes) || bakedInRoutes;
+
+  const allRoutes = [
+    ...routes,
+    ...(customRoutes?.routes || []),
+    ...customBakedInRoutes,
+  ];
 
   function RouteWithErrorBoundary({ route, ...rest }) {
     // eslint-disable-next-line react/jsx-props-no-spreading
