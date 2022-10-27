@@ -44,9 +44,7 @@ describe('UICustomizationService.ts', () => {
   beforeEach(() => {
     log.warn.mockClear();
     jest.clearAllMocks();
-    configuration = {
-      whiteLabeling: {},
-    };
+    configuration = {};
     uiCustomizationService = new UICustomizationService({
       configuration,
       commandsManager,
@@ -58,8 +56,8 @@ describe('UICustomizationService.ts', () => {
       uiCustomizationService.init(extensionManager);
     });
 
-    it('whiteLabellingRegistered', () => {
-      configuration.whiteLabeling.testItem = testItem;
+    it('configurationRegistered', () => {
+      configuration.testItem = testItem;
       uiCustomizationService.init(extensionManager);
       expect(uiCustomizationService.getGlobalCustomization('testItem')).toBe(
         testItem
@@ -84,7 +82,7 @@ describe('UICustomizationService.ts', () => {
       extensionManager.moduleEntries[
         '@testExtension.customizationModule.default'
       ] = { name: 'default', value: [ohifOverlayItem] };
-      configuration.whiteLabeling.testItem = testItem;
+      configuration.testItem = testItem;
       uiCustomizationService.init(extensionManager);
 
       const item = uiCustomizationService.getGlobalCustomization('testItem');
@@ -101,7 +99,7 @@ describe('UICustomizationService.ts', () => {
       extensionManager.moduleEntries[
         '@testExtension.customizationModule.default'
       ] = { name: 'default', value: [ohifOverlayItem] };
-      configuration.whiteLabeling.testItem = testItem;
+      configuration.testItem = testItem;
       uiCustomizationService.init(extensionManager);
 
       const item = uiCustomizationService.getGlobalCustomization('testItem2', {
@@ -152,7 +150,7 @@ describe('UICustomizationService.ts', () => {
       extensionManager.moduleEntries[
         '@testExtension.customizationModule.default'
       ] = { name: 'default', value: [ohifOverlayItem] };
-      configuration.whiteLabeling.testItem = testItem;
+      configuration.testItem = testItem;
       uiCustomizationService.init(extensionManager);
 
       // Add a mode customization that would otherwise fail below

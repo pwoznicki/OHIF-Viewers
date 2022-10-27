@@ -52,17 +52,6 @@ function App({ config, defaultExtensions, defaultModes }) {
   const appConfigState = init.appConfig;
   const { routerBasename, modes, dataSources, oidc } = appConfigState;
 
-  // Use config to create routes
-  const appRoutes = createRoutes({
-    modes,
-    dataSources,
-    extensionManager,
-    servicesManager,
-    commandsManager,
-    hotkeysManager,
-    commandsManager,
-    routerBasename,
-  });
   const {
     UIDialogService,
     UIModalService,
@@ -93,6 +82,18 @@ function App({ config, defaultExtensions, defaultModes }) {
 
   // Should there be a generic call to init on the extension manager?
   uiCustomizationService.init(extensionManager);
+
+  // Use config to create routes
+  const appRoutes = createRoutes({
+    modes,
+    dataSources,
+    extensionManager,
+    servicesManager,
+    commandsManager,
+    hotkeysManager,
+    commandsManager,
+    routerBasename,
+  });
 
   if (oidc) {
     authRoutes = (

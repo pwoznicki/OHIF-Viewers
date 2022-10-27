@@ -11,10 +11,6 @@ const EVENTS = {
 
 type Obj = Record<string, unknown>;
 
-interface UICustomizationConfiguration {
-  whiteLabeling?: Obj;
-}
-
 type ComponentReturn = {
   component: ComponentType;
   props?: Obj;
@@ -75,13 +71,13 @@ export default class UICustomizationService extends PubSubService {
   constructor({ configuration, commandsManager }) {
     super(EVENTS);
     this.commandsManager = commandsManager;
-    this.configuration = configuration;
+    this.configuration = configuration || {};
   }
 
   public init(extensionManager: ExtensionManager): void {
     this.extensionManager = extensionManager;
     this.initDefaults();
-    this.addReferences(this.configuration.whiteLabeling);
+    this.addReferences(this.configuration);
   }
 
   public onModeEnter(): void {
@@ -274,5 +270,4 @@ export default class UICustomizationService extends PubSubService {
       }
     }
   }
-
 }

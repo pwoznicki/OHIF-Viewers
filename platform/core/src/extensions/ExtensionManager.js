@@ -45,7 +45,6 @@ export default class ExtensionManager {
     for (const service of Object.values(_servicesManager.services)) {
       service?.onModeEnter?.();
     }
-    MeasurementService.clearMeasurements();
 
     registeredExtensionIds.forEach(extensionId => {
       const onModeEnter = _extensionLifeCycleHooks.onModeEnter[extensionId];
@@ -73,8 +72,9 @@ export default class ExtensionManager {
       ViewportGridService,
     } = _servicesManager.services;
 
-    MeasurementService.clearMeasurements();
-    ViewportGridService.reset();
+    for (const service of Object.values(_servicesManager.services)) {
+      service?.onModeExit?.();
+    }
 
     registeredExtensionIds.forEach(extensionId => {
       const onModeExit = _extensionLifeCycleHooks.onModeExit[extensionId];

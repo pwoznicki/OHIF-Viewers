@@ -3,6 +3,10 @@ window.config = {
   // whiteLabelling: {},
   extensions: [],
   modes: [],
+  uiCustomizationService: {
+    // Shows a custom route -access via http://localhost:3000/custom
+    // customRoutes: '@ohif/extension-default.customizationModule.customRoutes',
+  },
   showStudyList: true,
   maxNumberOfWebWorkers: 3,
   maxNumRequests: {

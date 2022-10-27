@@ -9,6 +9,7 @@ const publicAPI = {
   setCachedLayout: _setCachedLayout,
   setServiceImplementation,
   reset: _reset,
+  onModeExit: _onModeExit,
   set: _set,
 };
 
@@ -20,6 +21,7 @@ const serviceImplementation = {
     console.warn('setDisplaySetsForViewport() NOT IMPLEMENTED'),
   _setLayout: () => console.warn('setLayout() NOT IMPLEMENTED'),
   _reset: () => console.warn('reset() NOT IMPLEMENTED'),
+  _onModeExit: () => console.warn('onModeExit() NOT IMPLEMENTED'),
   _setCachedLayout: () => console.warn('setCachedLayout() NOT IMPLEMENTED'),
   _set: () => console.warn('set() NOT IMPLEMENTED'),
 };
@@ -51,6 +53,10 @@ function _reset() {
   return serviceImplementation._reset({});
 }
 
+function _onModeExit() {
+  return serviceImplementation._onModeExit();
+}
+
 function _setCachedLayout({ numCols, numRows, viewports }) {
   return serviceImplementation._setLayout({ numCols, numRows, viewports });
 }
@@ -62,6 +68,7 @@ function setServiceImplementation({
   setCachedLayout: setCachedLayoutImplementation,
   setLayout: setLayoutImplementation,
   reset: resetImplementation,
+  onModeExit: onModeExitImplementation,
   set: setImplementation,
 }) {
   if (getStateImplementation) {
@@ -78,6 +85,9 @@ function setServiceImplementation({
   }
   if (resetImplementation) {
     serviceImplementation._reset = resetImplementation;
+  }
+  if (onModeExitImplementation) {
+    serviceImplementation._onModeExit = onModeExitImplementation;
   }
   if (setCachedLayoutImplementation) {
     serviceImplementation._setCachedLayout = setCachedLayoutImplementation;

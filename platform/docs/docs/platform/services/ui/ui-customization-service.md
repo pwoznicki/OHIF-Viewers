@@ -18,7 +18,8 @@ UI components and types to deal with, but it does not directly provide an UI
 displayable elements unless customized to do so.
 
 ## Registering Customizations
-There are several ways to register customizations.  The `APP_CONFIG.whiteLabeling`
+There are several ways to register customizations.  The
+`APP_CONFIG.uiCustomizationService`
 field is used as a per-configuration entry.  This object can list single
 configurations by id, or it can list sets of customizations by referring to
 the `customizationModule` in an extension.
@@ -70,7 +71,7 @@ Then, in the configuration file one might have a custom overlay definition:
 ```js
 // in the APP_CONFIG file set the top right area to show the patient name
 // using PN: as a prefix when the study has a non-empty patient name.
-whiteLabeling: {
+uiCustomizationService: {
   cornerstoneOverlayTopRight: {
     id: 'cornerstoneOverlayTopRight',
     customizationType: 'ohif.cornerstoneOverlay',
@@ -89,7 +90,7 @@ whiteLabeling: {
 ```
 
 In the mode customization, the overlay is then further customized
-with a bottom-right overlay, which extends the whiteLabeling customization.
+with a bottom-right overlay, which extends the uiCustomizationService configuration.
 
 ```js
 // Import the type from the extension itself
@@ -226,6 +227,19 @@ This can be used to replace the default search page.
     return ret;
   }
 }
+```
+
+There is a usage of this example commented out in config/default.js that
+looks like the code below.  This example is provided by the default extension,
+again with commented out code.  Uncomment the getCustomizationModule customRoutes
+code in hte default module to activate this, and then go to: `http://localhost:3000/custom`
+to see the custom route.
+
+```js
+uiCustomizationService: {
+    // Shows a custom route -access via http://localhost:3000/custom
+    // customRoutes: '@ohif/extension-default.customizationModule.customRoutes',
+  },
 ```
 
 > 3rd Party implementers may be added to this table via pull requests.
