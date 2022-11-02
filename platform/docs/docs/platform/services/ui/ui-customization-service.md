@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-sidebar_label: UI Modal Service
+sidebar_label: UI Customization Service
 ---
 # UI Customization Service
 

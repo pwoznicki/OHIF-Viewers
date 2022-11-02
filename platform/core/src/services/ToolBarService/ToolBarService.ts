@@ -59,11 +59,11 @@ export default class ToolBarService {
   /**
    *
    * @param {*} interaction - can be undefined to run nothing
-   * @param {*} extraOptions is an optional set of extra commandOptions
+   * @param {*} options is an optional set of extra commandOptions
    *    used for calling the specified interaction.  That is, the command is
-   *    called with {...commandOptions,...extraOptions}
+   *    called with {...commandOptions,...options}
    */
-  recordInteraction(interaction, extraOptions) {
+  recordInteraction(interaction, options) {
     if (!interaction) return;
     const commandsManager = this._commandsManager;
     const { groupId, itemId, interactionType, commands } = interaction;
@@ -76,7 +76,7 @@ export default class ToolBarService {
               commandName,
               {
                 ...commandOptions,
-                ...extraOptions,
+                ...options,
               },
               context
             );

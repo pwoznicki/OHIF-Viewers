@@ -255,7 +255,7 @@ export default class UICustomizationService extends PubSubService {
   /** References are:
    * list of customizations, added in order
    * object containing a customization id and value
-   * This format allows for the origina whitelist format.
+   * This format allows for the original whitelist format.
    */
   addReferences(references?: Obj | Obj[], isGlobal = true): void {
     if (!references) return;

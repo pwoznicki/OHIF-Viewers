@@ -40,8 +40,6 @@ export default class ExtensionManager {
       _extensionLifeCycleHooks,
     } = this;
 
-    const { MeasurementService } = _servicesManager.services;
-
     for (const service of Object.values(_servicesManager.services)) {
       service?.onModeEnter?.();
     }
@@ -66,11 +64,6 @@ export default class ExtensionManager {
       _commandsManager,
       _extensionLifeCycleHooks,
     } = this;
-
-    const {
-      MeasurementService,
-      ViewportGridService,
-    } = _servicesManager.services;
 
     for (const service of Object.values(_servicesManager.services)) {
       service?.onModeExit?.();
@@ -278,7 +271,6 @@ export default class ExtensionManager {
 
       return extensionModule;
     } catch (ex) {
-      console.log('Caught', ex);
       throw new Error(
         `Exception thrown while trying to call ${getModuleFnName} for the ${extensionId} extension`
       );
