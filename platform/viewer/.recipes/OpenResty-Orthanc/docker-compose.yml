@@ -13,8 +13,8 @@ services:
       context: ./../../../../
       # Relative to context
       dockerfile: ./platform/viewer/.recipes/OpenResty-Orthanc/dockerfile
-    image: webapp:latest
-    container_name: webapp
+    image: pwoznicki/ohif_viewer:0.1
+    container_name: ohif
     volumes:
       # Nginx config
       - ./config/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:ro
@@ -34,7 +34,7 @@ services:
   # TODO: Update to use Postgres
   # https://github.com/mrts/docker-postgresql-multiple-databases
   orthanc:
-    image: jodogne/orthanc-plugins:1.9.7
+    image: jodogne/orthanc-plugins:1.11.0
     hostname: orthanc
     container_name: orthanc
     volumes:
