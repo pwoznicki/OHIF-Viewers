@@ -1,6 +1,4 @@
-# Reference:
-# - https://docs.docker.com/compose/compose-file
-# - https://eclipsesource.com/blogs/2018/01/11/authenticating-reverse-proxy-with-keycloak/
+# Reference: - https://docs.docker.com/compose/compose-file - https://eclipsesource.com/blogs/2018/01/11/authenticating-reverse-proxy-with-keycloak/
 
 version: '3.5'
 
@@ -9,12 +7,12 @@ services:
   # Underlying image: openresty/openresty:alpine-fat
   ohif_viewer:
     build:
-      # Project root
+    # Project root
       context: ./../../../../
       # Relative to context
       dockerfile: ./platform/viewer/.recipes/OpenResty-Orthanc/dockerfile
-    image: webapp:latest
-    container_name: webapp
+    image: pwoznicki/ohif-viewer-v3-test:0.1
+    container_name: ohif-v3-test
     volumes:
       # Nginx config
       - ./config/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:ro
@@ -34,7 +32,7 @@ services:
   # TODO: Update to use Postgres
   # https://github.com/mrts/docker-postgresql-multiple-databases
   orthanc:
-    image: jodogne/orthanc-plugins:1.5.6
+    image: jodogne/orthanc-plugins:1.11.0
     hostname: orthanc
     container_name: orthanc
     volumes:

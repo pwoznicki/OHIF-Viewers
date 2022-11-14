@@ -23,7 +23,7 @@
 
 
 # Stage 1: Build the application
-FROM node:12.22.1-slim as builder
+FROM node:16.14-slim as builder
 
 RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
@@ -41,6 +41,7 @@ COPY lerna.json /usr/src/app/lerna.json
 COPY package.json /usr/src/app/package.json
 COPY postcss.config.js /usr/src/app/postcss.config.js
 COPY yarn.lock /usr/src/app/yarn.lock
+COPY preinstall.js /usr/src/app/preinstall.js
 
 # ADD . /usr/src/app/
 RUN yarn config set workspaces-experimental true
@@ -76,7 +77,7 @@ RUN luarocks install lua-resty-session
 RUN luarocks install lua-resty-http
 # !!!
 RUN luarocks install lua-resty-openidc
-RUN luarocks install luacrypto
+RUN luarocks install luaossl
 
 # Copy build output to image
 COPY --from=builder /usr/src/app/platform/viewer/dist /var/www/html
